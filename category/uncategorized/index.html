@@ -144,13 +144,32 @@ a{text-decoration-thickness:1px!important;text-underline-offset:.1em}:where(.wp-
 {"imports":{"@wordpress/interactivity":"/wp-includes/js/dist/script-modules/interactivity/index.min.js?ver=66c613f68580994bb00a"}}
 </script>
 <link rel="modulepreload" href="/wp-includes/js/dist/script-modules/interactivity/index.min.js?ver=66c613f68580994bb00a" id="@wordpress/interactivity-js-modulepreload" fetchpriority="low">
-<style class="wp-fonts-local">
+<meta name="generator" content="Elementor 3.35.6; features: e_font_icon_svg, additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-auto">
+			<style>
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
+					background-image: none !important;
+				}
+				@media screen and (max-height: 1024px) {
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+				@media screen and (max-height: 640px) {
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+			</style>
+			<style class="wp-fonts-local">
 @font-face{font-family:Manrope;font-style:normal;font-weight:200 800;font-display:fallback;src:url('/wp-content/themes/twentytwentyfive/assets/fonts/manrope/Manrope-VariableFont_wght.woff2') format('woff2');}
 @font-face{font-family:"Fira Code";font-style:normal;font-weight:300 700;font-display:fallback;src:url('/wp-content/themes/twentytwentyfive/assets/fonts/fira-code/FiraCode-VariableFont_wght.woff2') format('woff2');}
 </style>
 </head>
 
-<body class="archive category category-uncategorized category-1 wp-embed-responsive wp-theme-twentytwentyfive">
+<body class="archive category category-uncategorized category-1 wp-embed-responsive wp-theme-twentytwentyfive elementor-default elementor-kit-26">
 
 <div class="wp-site-blocks"><header class="wp-block-template-part">
 <div class="wp-block-group alignfull is-layout-flow wp-block-group-is-layout-flow">
@@ -279,7 +298,33 @@ a{text-decoration-thickness:1px!important;text-underline-offset:.1em}:where(.wp-
 {"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/stageshock/*"},{"not":{"href_matches":["/stageshock/wp-*.php","/stageshock/wp-admin/*","/stageshock/wp-content/uploads/sites/2/*","/stageshock/wp-content/*","/stageshock/wp-content/plugins/*","/stageshock/wp-content/themes/twentytwentyfive/*","/stageshock/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
 </script>
 <script type="module" src="/wp-includes/js/dist/script-modules/block-library/navigation/view.min.js?ver=b0f909c3ec791c383210" id="@wordpress/block-library/navigation/view-js-module" fetchpriority="low" data-wp-router-options='{"loadOnClientNavigation":true}'></script>
-<script id="wp-block-template-skip-link-js-after">
+			<script>
+				const lazyloadRunObserver = () => {
+					const lazyloadBackgrounds = document.querySelectorAll( `.e-con.e-parent:not(.e-lazyloaded)` );
+					const lazyloadBackgroundObserver = new IntersectionObserver( ( entries ) => {
+						entries.forEach( ( entry ) => {
+							if ( entry.isIntersecting ) {
+								let lazyloadBackground = entry.target;
+								if( lazyloadBackground ) {
+									lazyloadBackground.classList.add( 'e-lazyloaded' );
+								}
+								lazyloadBackgroundObserver.unobserve( entry.target );
+							}
+						});
+					}, { rootMargin: '200px 0px 200px 0px' } );
+					lazyloadBackgrounds.forEach( ( lazyloadBackground ) => {
+						lazyloadBackgroundObserver.observe( lazyloadBackground );
+					} );
+				};
+				const events = [
+					'DOMContentLoaded',
+					'elementor/lazyload/observe',
+				];
+				events.forEach( ( event ) => {
+					document.addEventListener( event, lazyloadRunObserver );
+				} );
+			</script>
+			<script id="wp-block-template-skip-link-js-after">
 	( function() {
 		var skipLinkTarget = document.querySelector( 'main' ),
 			sibling,
